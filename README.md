@@ -570,7 +570,7 @@ Twig互換モードのときは {# 〜 #}、Smarty互換モードのときは {\
 
 ### capture
 
-setvarblock'の別名です。'name'属性の代わりに'var'属性を使ってください。
+'setvarblock'の別名です。
 
 ### setvartemplate
 
