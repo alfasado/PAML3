@@ -308,6 +308,7 @@ ignore, setvars, sethashvars, capture, setvarblock, assignvars, setvartemplate�
 * function : 配列の場合に実行する関数名\('push'もしくは'unshift'\)
 * key : ハッシュのキー名
 * op : 変数に対して四則計算を行う
+* scope : 'local' または 'global' \(省略時global\)
 
 ### assign
 
@@ -567,8 +568,21 @@ Twig互換モードのときは {# 〜 #}、Smarty互換モードのときは {\
 * prepend : 既存の変数の前に指定した値を連結
 * function : 配列の場合に実行する関数名\('push'もしくは'unshift'\)
 * key : ハッシュのキー名
+* scope : 'local' または 'global' \(省略時global\)
 
 ### capture
+
+'setvarblock'の別名です。
+
+### let
+
+Mustache, Twig互換モードのときのみ利用可能です。
+
+'setvarblock scope="local"'の別名です。
+
+### set
+
+Mustache, Twig互換モードのときのみ利用可能です。
 
 'setvarblock'の別名です。
 
