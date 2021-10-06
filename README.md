@@ -44,6 +44,8 @@
 
 ## サンプル
 
+※ プロパティ「compatible」には「Twig」「Mustache」「Smarty」が指定可能です。プロパティ「prefix」に「mt」を指定するとPowerCMS \(X\)互換の記法となります。
+
 ### twig\.php
 
     <?php
