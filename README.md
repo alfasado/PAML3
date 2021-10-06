@@ -197,11 +197,23 @@
         ...
     {% endtagname %}
     
-    または、
+    または(Mustache互換)、
     
-    {% tagname attr1="1" attr2="2" %}
+    {{#tagname attr1="1" attr2="2"}}
         ...
-    {% /tagname %}
+    {{/tagname}}
+    
+    または(Smarty互換)、
+
+    {tagname attr1="1" attr2="2"}
+        ...
+    {/tagname}
+    
+    または(PowerCMS互換)、
+    
+    <mt:tagname>
+    
+    </mt:tagname>
 
 #### 予約変数
 
