@@ -1409,4 +1409,4 @@ plugins/PluginID/locale/&lt;language&gt;\.json
 
 ### テンプレート
 
-    {% trans phrase="Welcome to %s!" params="PAML" component="PAML" %}
+    {{ trans phrase="Welcome to %s!" params="PAML" component="PAML" }}
