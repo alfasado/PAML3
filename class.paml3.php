@@ -1019,7 +1019,14 @@ class PAML {
               : array_slice( $params, $counter, 1, true );
         if ( $vars ) {
             $repeat = true;
-            $ctx->local_vars[ key( $name ) ] = $params[ $counter ];
+            $ctx->local_vars['__value__'] = $vars;
+            if ( is_array( $vars ) && count( $vars ) == 1 ) {
+                $ctx->local_vars['__key__'] = key( $vars );
+                $vars = $vars[ key( $vars ) ];
+            } else {
+                $ctx->local_vars['__key__'] = $counter + 1;
+            }
+            $ctx->local_vars[ key( $name ) ] = $vars;
         } else if (!isset( $params[ $counter + 1] ) && count( $params ) <= $counter ) {
             $repeat = $ctx->false();
         }
@@ -1172,10 +1179,19 @@ class PAML {
         }
         if (!isset( $params ) ) $params = $ctx->local_params;
         $ctx->set_loop_vars( $counter, $params );
-        if ( isset( $params[ $counter ] ) ) {
+        $vars = isset( $params[ $counter ] ) ? $params[ $counter ]
+              : array_slice( $params, $counter, 1, true );
+        if ( $vars ) {
             $repeat = true;
             if ( isset( $ctx->local_vars['loop_type'] ) && $ctx->local_vars['loop_type'] == 2 ) {
-                $ctx->local_vars[ $ctx->local_vars['var_name'] ] = $params[ $counter ];
+                $ctx->local_vars['__value__'] = $vars;
+                if ( is_array( $vars ) && count( $vars ) == 1 ) {
+                    $ctx->local_vars['__key__'] = key( $vars );
+                    $vars = $vars[ key( $vars ) ];
+                } else {
+                    $ctx->local_vars['__key__'] = $counter + 1;
+                }
+                $ctx->local_vars[ $ctx->local_vars['var_name'] ] = $vars;
             } else {
                 $var = isset( $args['var'] ) ? $args['var'] : '__value__';
                 $ctx->local_vars[ $var ] = $params[ $counter ];
@@ -3081,7 +3097,7 @@ class PAML {
         if (!$this->build_start ) {
             $magic = $this->magic( $content );
             $magic2 = $this->magic( $content . $magic );
-            $this->html_block = [ '%' . $magic, $magic . '%' ];
+            $this->html_block = ['%' . $magic, $magic . '%'];
             list( $this->html_ldelim, $this->html_rdelim ) =
                 array( '==' . $magic, '==' . $magic2 );
         }
