@@ -1618,15 +1618,14 @@ class PAML {
     }
 
     function function_var ( $args, $ctx ) {
-        if (!isset( $args['name'] ) ) return;
+        if (! isset( $args['name'] ) ) {
+            return $this->function_let( $args, $ctx );
+        }
         if ( isset( $args['setuped_var'] ) && $args['setuped_var'] )
             return $args['setuped_var'];
         if ( isset( $args['value'] ) ) {
             $args['this_tag'] = 'setvar';
             return $ctx->function_setvar( $args, $ctx );
-        }
-        if (! isset( $args['name'] ) ) {
-            return $this->function_let( $args, $ctx );
         }
         $name = $args['name'];
         if ( is_array( $name )&& isset( $name['__array__'] ) ) {
